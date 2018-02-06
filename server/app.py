@@ -61,20 +61,13 @@ def create_app(app_name, config_obj):
                        template_folder="dist")
     factory.config.from_object(config_obj)
 
-    mail.init_app(factory)
     moment.init_app(factory)
-    # minify.init_app(factory)
-    compress.init_app(factory)
+
     csrf.init_app(factory)
-    login_manager.init_app(factory)
 
     # register 'main' blueprint
     from .views.main import main as main_blueprint
     factory.register_blueprint(main_blueprint)
-
-    # register 'auth' blueprint
-    from .views.auth import auth as auth_blueprint
-    factory.register_blueprint(auth_blueprint, url_prefix='/auth')
 
     # register 'api' blueprint
     from .views.api import api as api_blueprint
