@@ -9,7 +9,7 @@ from raven.contrib.flask import Sentry
 
 from .extensions.gzip import Gzip
 
-# App factories
+
 SENTRY_DSN = ('https://00d8a063e7cc433f8fd0821fc8432c33:'
               'dfd25db9211a4f08a79aba497ba423ea@sentry.io/272338')
 
@@ -81,9 +81,7 @@ def create_app(app_name, config_obj):
         ))
         factory.logger.addHandler(file_handler)
     else:
-        # from flask_sslify import SSLify
-        # SSLify(factory)
-        # Enable Sentry logging
+
         sentry = Sentry(
             app=factory, dsn=SENTRY_DSN,
             logging=True, level=logging.WARN)
