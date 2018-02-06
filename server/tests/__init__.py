@@ -24,6 +24,7 @@ class BaseTestCase(LiveServerTestCase):
         super(BaseTestCase, self).setUp()
         self.app_context = self.app.app_context()
         self.app_context.push()
+        self.client = self.app.test_client()
 
     def tearDown(self):
         super(BaseTestCase, self).tearDown()
