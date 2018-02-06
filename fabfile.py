@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- ##
 
 import uuid
-from fabric.api import env, run as _run, sudo, require, prompt, put, local
+from fabric.api import env, prompt, local
 
 
 def source_settings():
@@ -39,6 +39,11 @@ def test():
 
 def assets():
     local('python manage.py collectstatic')
+
+
+def init():
+    source_settings()
+    local('zappa init')
 
 
 def deploy(environment=''):
