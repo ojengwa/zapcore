@@ -1,5 +1,8 @@
 import gzip
-import io as StringIO
+try:
+    import StringIO
+except ImportError:
+    import io as StringIO
 
 from flask import request
 
