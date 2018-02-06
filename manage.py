@@ -12,7 +12,7 @@ from server.app import create_app
 
 
 application = create_app(
-    'inform',
+    'zapcore',
     os.getenv('FLASK_SETTINGS_MODULE',
               'server.config.DevConfig'))
 
