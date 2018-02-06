@@ -7,5 +7,4 @@ commits:
 		git commit -sm "Update $$path"; \
 	done; \
 	git add .; \
-	git commit -sm 'refactor codebase'; \
-	git push;
+	git commit -sm 'refactor codebase';
