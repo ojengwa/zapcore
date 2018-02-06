@@ -27,10 +27,10 @@ class Config(object):
 
     LOGFILE_NAME = 'zapcore'
 
-    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY', 'AKIAI7KGQ4FVKQ5EV3LA')
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY')
 
     AWS_SECRET_ACCESS_KEY = os.getenv(
-        'AWS_SECRET_KEY', '5cQo6o7srVR89AYlcZQDReX0afxHzib5VmlY98bZ')
+        'AWS_SECRET_KEY')
 
     FLASKS3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME', 'zapcore')
 
