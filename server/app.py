@@ -1,41 +1,21 @@
 import logging
-import os
 
 from flask import Flask
-from flask_assets import Environment
-from flask_compress import Compress
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect
-from flask_login import LoginManager
-from flask_mail import Mail
-from flask_moment import Moment
+from flask_s3 import FlaskS3
+
 from raven.contrib.flask import Sentry
 
-from .extensions.allows import Allows
-from .extensions.babel import Babel
 from .extensions.gzip import Gzip
-# from .extensions.minify import HTMLMIN
-from .extensions.redis import RedisExtension
-from .extensions.response import Response
-
-from .providers.proxies import FlaskPooledClusterRpcProxy
-
-from pymongo import MongoClient
 
 # App factories
 SENTRY_DSN = ('https://00d8a063e7cc433f8fd0821fc8432c33:'
               'dfd25db9211a4f08a79aba497ba423ea@sentry.io/272338')
 
 
-mail = Mail()
-moment = Moment()
-compress = Compress()
+s3 = FlaskS3()
 csrf = CSRFProtect()
-# minify = HTMLMIN()
-
-login_manager = LoginManager()
-login_manager.session_protection = 'strong'  # use strong session protection
-login_manager.login_view = 'auth.login'
 
 
 class FlaskVue(Flask):
@@ -61,8 +41,7 @@ def create_app(app_name, config_obj):
                        template_folder="dist")
     factory.config.from_object(config_obj)
 
-    moment.init_app(factory)
-
+    s3.init_app(factory)
     csrf.init_app(factory)
 
     # register 'main' blueprint
@@ -73,39 +52,11 @@ def create_app(app_name, config_obj):
     from .views.api import api as api_blueprint
     factory.register_blueprint(api_blueprint, url_prefix='/_api')
 
-    # Add RPC proxy
-    rpc = FlaskPooledClusterRpcProxy(factory)
-
-    factory.rpc = rpc
-
-    db_client = MongoClient(factory.config.get('MONGODB_URI'))
-
-    factory.db = db_client.get_database()
-
     # add CORS support
     CORS(factory)
 
     # add GZip support
     Gzip(factory)
-
-    # Assets
-    Environment(factory)
-
-    # Authorisation decorator
-    Allows(factory)
-
-    # Redis extension
-    redis = RedisExtension(
-        factory, **{'decode_responses': True,
-                    'charset': 'utf-8'})
-
-    factory.redis = redis._redis_client
-
-    # Add custom response formatter
-    Response(factory)
-
-    # Add translation support
-    Babel(factory)
 
     # Initialize Logging
     if factory.debug:
@@ -113,7 +64,7 @@ def create_app(app_name, config_obj):
         from flask_debugtoolbar import DebugToolbarExtension
 
         DebugToolbarExtension(factory)
-        os.environ.setdefault('FLASK_SETTINGS_MODULE', 'app.config.DevConfig')
+
         file_handler = RotatingFileHandler(
             "%s/logs/%s.log" % (
                 factory.config.get('BASE_DIR'),
