@@ -6,4 +6,4 @@ class TestConfig(Config):
 
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
     TEST = True
-    SQLALCHEMY_ECHO = False
+    SQLALCHEMY_ECHO = True
