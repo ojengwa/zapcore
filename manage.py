@@ -1,21 +1,20 @@
 #! /usr/bin/env python
 
-import flask_s3
 import os
 
 
-from app import create_app
-
-from flask import send_from_directory
-from flask_assets import ManageAssets
+import flask
+import flask_s3
 from flask_script import Manager
 from flask_script import Shell
+
+from server.app import create_app
 
 
 application = create_app(
     'inform',
     os.getenv('FLASK_SETTINGS_MODULE',
-              'app.config.DevConfig'))
+              'server.config.DevConfig'))
 
 
 @application.route('/assets/<path:file_uri>')
@@ -25,7 +24,7 @@ def send_static(file_uri):
     Monkey patching
     The following handlers will be removed as soon as we migrate to S3."""
 
-    return send_from_directory('static', file_uri)
+    return flask.send_from_directory('dist', file_uri)
 
 
 # Initializing script manager
@@ -35,14 +34,13 @@ manager.help_args = ('-h', '-?', '--help')
 
 def make_shell_context():
     """
-    Automatically import applicationlication objects into interactive
+    Automatically import application objects into interactive
     shell.
     """
     return dict(app=application)
 
 
 manager.add_command("shell", Shell(make_context=make_shell_context))
-manager.add_command("assets", ManageAssets())
 
 
 @manager.command
