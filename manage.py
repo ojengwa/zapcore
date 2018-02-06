@@ -60,7 +60,7 @@ def test():
 
 
 @manager.command
-def to_s3():
+def collectstatic():
     """ Uploads static assets to Amazon s3 """
     application.logger.info("Starting static files uploads ")
     flask_s3.create_all(application)
