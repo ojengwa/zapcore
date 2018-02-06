@@ -1,10 +1,17 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
+**/__pycache__/**
 *.py[cod]
 *$py.class
-
+.idea/
 # C extensions
 *.so
+*.egg-info
+.cache
+*.pyc
+htmlcov
+.coverage
+*/wheelhouse
+*.sql
 
 # Distribution / packaging
 .Python
@@ -15,12 +22,10 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
 var/
-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -43,7 +48,7 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
-*.cover
+*,cover
 .hypothesis/
 
 # Translations
@@ -67,7 +72,7 @@ docs/_build/
 # PyBuilder
 target/
 
-# Jupyter Notebook
+# IPython Notebook
 .ipynb_checkpoints
 
 # pyenv
@@ -76,26 +81,25 @@ target/
 # celery beat schedule file
 celerybeat-schedule
 
-# SageMath parsed files
-*.sage.py
-
 # dotenv
 .env
-
+.ecs/
 # virtualenv
-.venv
 venv/
 ENV/
-
+requirements/local.txt
 # Spyder project settings
 .spyderproject
-.spyproject
 
 # Rope project settings
 .ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
+.DS_Store
+node_modules
+schema.md
+.sublime-project
+.sublime-project.sublime-workspace
+app/config/development.py
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
