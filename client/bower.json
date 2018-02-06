@@ -1,0 +1,22 @@
+{
+  "name": "zapcore",
+  "description": "The project for hiring developers to the Product Development team.",
+  "main": "",
+  "authors": [
+    "Bernard Ojengwa <bernardojengwa@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ojengwa/zapcore",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/vendors",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "milligram": "^1.3.0"
+  }
+}
