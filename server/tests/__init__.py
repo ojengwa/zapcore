@@ -13,6 +13,11 @@ class BaseTestCase(LiveServerTestCase):
     def create_app(self):
 
         app = _create_app(__name__, FLASK_SETTINGS_MODULE)
+
+        # Monkey patch template and static assets path.
+        app.template_folder = '../../dist'
+        app.static_folder = '../../dist/static'
+
         return app
 
     def setUp(self):
