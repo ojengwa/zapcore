@@ -1,7 +1,6 @@
-from flask import current_app as app
 from flask_testing import LiveServerTestCase
 
-from server.app import create_app as _create_app, db
+from server.app import create_app as _create_app
 
 
 FLASK_SETTINGS_MODULE = 'server.config.TestConfig'
@@ -19,6 +18,8 @@ class BaseTestCase(LiveServerTestCase):
         app.template_folder = '../../dist'
         app.static_folder = '../../dist/static'
 
+        # DB?
+        self.db = app.extensions.get('sqlalchemy')
         return app
 
     def setUp(self):
@@ -27,9 +28,6 @@ class BaseTestCase(LiveServerTestCase):
         self.app_context.push()
         self.client = self.app.test_client()
 
-        db.create_all()
-
     def tearDown(self):
         super(BaseTestCase, self).tearDown()
-        db.drop_all()
-        app.app_context().pop()
+        self.app_context.pop()
