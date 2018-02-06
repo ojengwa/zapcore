@@ -11,7 +11,6 @@ class Config(object):
     testing, development and production environments
 
     '''
-
     DEBUG = True
     FLASK_DEBUG = 1
 
@@ -19,8 +18,9 @@ class Config(object):
         'SECRET_KEY',
         '\x91c~\xc0-\xe3\'f\xe19PE\x91`6\x01/\x0c\xed\\\xbdk\xf8')
 
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
-    DATABASE_URL = os.getenv('DATABASE_URL')
     PROTOCOL = 'http://'
 
     ASSETS_DEBUG = False  # not DEBUG
