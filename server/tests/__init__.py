@@ -1,6 +1,7 @@
+from flask import current_app as app
 from flask_testing import LiveServerTestCase
 
-from server.app import create_app as _create_app
+from server.app import create_app as _create_app, db
 
 
 FLASK_SETTINGS_MODULE = 'server.config.TestConfig'
@@ -26,6 +27,9 @@ class BaseTestCase(LiveServerTestCase):
         self.app_context.push()
         self.client = self.app.test_client()
 
+        db.create_all()
+
     def tearDown(self):
         super(BaseTestCase, self).tearDown()
-        self.app_context.pop()
+        db.drop_all()
+        app.app_context().pop()
