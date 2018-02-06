@@ -61,9 +61,8 @@ def init():
         local('zappa init')
 
 
-def deploy(environment):
+def deploy(environment='--all'):
     prod_settings()
-    local('printenv')
     with zappa_env():
         local('zappa deploy {0}'.format(environment))
 
