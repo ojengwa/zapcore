@@ -6,7 +6,9 @@ class DevConfig(Config):
 
     DEBUG = True
     TEST = False
+
     SQLALCHEMY_ECHO = True
-    DATABASE_URL = 'postgresql://postgres:[]{}?@@local:5433/inform'
+    SQLALCHEMY_DATABASE_URI = (
+        'postgresql://postgres:[]{}?@@localhost:5433/inform')
 
     FLASKS3_USE_HTTPS = False
