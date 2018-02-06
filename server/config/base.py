@@ -69,16 +69,16 @@ class Config(object):
     AWS_SECRET_ACCESS_KEY = os.getenv(
         'AWS_SECRET_KEY', '5cQo6o7srVR89AYlcZQDReX0afxHzib5VmlY98bZ')
 
-    # FLASKS3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME', 'verifi-app-bucket')
+    FLASKS3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME', 'zapcore')
 
-    # FLASK_ASSETS_USE_S3 = True
-    # FLASKS3_USE_HTTPS = True
-    # USE_S3 = True
-    # FLASKS3_HEADERS = {
-    #     'Expires': 'Thu, 15 Apr 2020 20:00:00 GMT',
-    #     'Cache-Control': 'max-age=86400'
-    # }
-    # USE_S3_DEBUG = not USE_S3
+    FLASK_ASSETS_USE_S3 = True
+    FLASKS3_USE_HTTPS = True
+    USE_S3 = True
+    FLASKS3_HEADERS = {
+        'Expires': 'Thu, 15 Apr 2020 20:00:00 GMT',
+        'Cache-Control': 'max-age=86400'
+    }
+    USE_S3_DEBUG = not USE_S3
 
     SETUP_DIR = os.path.join(os.path.dirname(
         os.path.abspath(__name__)), 'setup/')
@@ -90,6 +90,3 @@ class Config(object):
         os.path.abspath(__name__)), 'templates/')
     STATIC_DIR = os.path.join(os.path.dirname(
         os.path.abspath(__name__)), 'static/')
-
-    BABEL_DEFAULT_TIMEZONE = 'Africa/Lagos'
-    DASHBOARD_ADMIN = ['bernard@verifi.ng', 'ebun@verifi.ng']
