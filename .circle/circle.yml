@@ -2,22 +2,12 @@ version: 2
 jobs:
   build:
     docker:
-        working_directory: ~/dashboard
+        working_directory: ~/zapcore
 
       - image: circleci/python:3.6.1
         environment:
             MODE: dev
-            ELASTICSEARCH_HOST: 127.0.0.1
-            ELASTICSEARCH_PORT: 9200
             FLASK_CONFIG: testing
-      - image: rabbitmq:3.6.1-management
-        environment:
-            RABBITMQ_DEFAULT_USER: admin
-            RABBITMQ_DEFAULT_PASS: admin
-        ports:
-          - "8023:15672"
-          - "8024:5672"
-
     steps:
       - checkout
 
@@ -58,7 +48,7 @@ jobs:
             fi
   test:
     docker:
-        working_directory: ~/dashboard
+        working_directory: ~/zapcore
       - image: circleci/python:3.6.1
     steps:
       - checkout
