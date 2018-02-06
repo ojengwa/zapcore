@@ -4,6 +4,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect
 from flask_s3 import FlaskS3
+from flask_sqlalchemy import SQLAlchemy
 
 from raven.contrib.flask import Sentry
 
@@ -16,6 +17,7 @@ SENTRY_DSN = ('https://00d8a063e7cc433f8fd0821fc8432c33:'
 
 s3 = FlaskS3()
 csrf = CSRFProtect()
+db = SQLAlchemy()
 
 
 class FlaskVue(Flask):
@@ -41,6 +43,7 @@ def create_app(app_name, config_obj):
                        template_folder="dist")
     factory.config.from_object(config_obj)
 
+    db.init_app(factory)
     s3.init_app(factory)
     csrf.init_app(factory)
 
