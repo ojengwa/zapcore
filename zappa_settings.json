@@ -1,17 +1,19 @@
 {
     "staging": {
         "app_function": "manage.application",
+        "apigateway_enabled": false,
+        "slim_handler": true,
         "aws_region": "us-east-1",
         "profile_name": "zapcore",
-        "project_name": "zapcore",
+        "project_name": "zapcore_app",
         "runtime": "python3.6",
         "s3_bucket": "zapcore",
         "environment_variables": {
             "FLASK_SETTINGS_MODULE": "server.config.StagingConfig"
         },
         "iam_authorization": true,
-        "attach_policy": ".config/policy.json",
-        "assume_policy": ".config/policy.json"
+        "delete_zip": true,
+        "cors": false
     },
     "staging_ap_northeast_1": {
         "aws_region": "ap-northeast-1",
