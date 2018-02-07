@@ -9,11 +9,16 @@
         "runtime": "python3.6",
         "s3_bucket": "zapcore",
         "environment_variables": {
-            "FLASK_SETTINGS_MODULE": "server.config.StagingConfig"
+            "FLASK_SETTINGS_MODULE": "server.config.StagingConfig",
+            "SECRET_KEY": "cSZSjandCwI9DAhQ"
+        },
+        "aws_environment_variables": {
+            "FLASK_SETTINGS_MODULE": "server.config.StagingConfig",
+            "SECRET_KEY": "cSZSjandCwI9DAhQ"
         },
         "delete_zip": true,
         "cors": true,
-        "exclude": [".bin/*", ".circle/*", "./config", "client/*", "dist/*", "*.log", "*.gz", "*.rar"]
+        "exclude": [".bin/*", ".circle/*", "./config", "client/*", "dist/*", "*.log", "*.gz", "*.rar", "development.py"]
     },
     "staging_ap_northeast_1": {
         "aws_region": "ap-northeast-1",
@@ -38,5 +43,9 @@
     "staging_us_west_1": {
         "aws_region": "us-west-1",
         "extends": "staging"
+    },
+    "prod": {
+        "extends": "staging",
+        "debug": false
     }
 }
