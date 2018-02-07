@@ -52,6 +52,7 @@ def test():
 
 
 def assets():
+
     local('python manage.py collectstatic')
 
 
@@ -113,7 +114,7 @@ def cloudformation(lambda_arn, role_arn, environment):
     with zappa_env():
         local(
             'zappa template {0} --l {1} -r {2}'.format(
-                lambda_arn, role_arn, environment))
+                environment, lambda_arn, role_arn))
 
 
 def status(environment):
