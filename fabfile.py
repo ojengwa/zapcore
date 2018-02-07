@@ -123,11 +123,12 @@ def status(environment):
         local('zappa status {0}'.format(environment))
 
 
-def log(environment, events='', since=''):
+def log(environment, events='', since='4h'):
     prod_settings()
     with zappa_env():
         local(
-            'zappa tail {0} --{1} --since'.format(environment, events, since))
+            'zappa tail {0} {1} --since {2}'.format(
+                environment, events, since))
 
 
 def invoke(environment, cmd, verbose=True):
