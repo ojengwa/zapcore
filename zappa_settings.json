@@ -13,9 +13,9 @@
             "SECRET_KEY": "cSZSjandCwI9DAhQ"
         },
         "aws_environment_variables": {
-            "FLASK_SETTINGS_MODULE": "server.config.StagingConfig",
-            "SECRET_KEY": "cSZSjandCwI9DAhQ"
+            "FLASK_SETTINGS_MODULE": "server.config.StagingConfig"
         },
+        "remote_env": "s3://zapcore/env.json",
         "delete_zip": true,
         "cors": true,
         "exclude": [".bin/*", ".circle/*", "./config", "client/*", "*.log", "*.gz", "*.rar", "development.py"]
