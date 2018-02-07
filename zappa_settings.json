@@ -5,13 +5,12 @@
         "slim_handler": true,
         "aws_region": "us-east-1",
         "profile_name": "zapcore",
-        "project_name": "zapcore_app",
+        "project_name": "zapcore",
         "runtime": "python3.6",
         "s3_bucket": "zapcore",
         "environment_variables": {
             "FLASK_SETTINGS_MODULE": "server.config.StagingConfig"
         },
-        "iam_authorization": true,
         "delete_zip": true,
         "cors": true,
         "exclude": [".bin/*", ".circle/*", "./config", "client/*", "dist/*", "*.log", "*.gz", "*.rar"]
