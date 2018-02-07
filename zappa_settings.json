@@ -13,7 +13,8 @@
         },
         "iam_authorization": true,
         "delete_zip": true,
-        "cors": false
+        "cors": true,
+        "exclude": [".bin/*", ".circle/*", "./config", "client/*", "dist/*", "*.log", "*.gz", "*.rar"]
     },
     "staging_ap_northeast_1": {
         "aws_region": "ap-northeast-1",
