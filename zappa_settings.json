@@ -1,13 +1,14 @@
 {
     "staging": {
         "app_function": "manage.application",
-        "slim_handler": true,
+        "slim_handler": false,
         "api_key_required": false,
         "aws_region": "us-east-1",
         "profile_name": "zapcore",
         "project_name": "zapcore",
         "runtime": "python3.6",
         "s3_bucket": "zapcore",
+        "binary_support": false,
         "environment_variables": {
             "FLASK_SETTINGS_MODULE": "server.config.StagingConfig",
             "SECRET_KEY": "cSZSjandCwI9DAhQ"
@@ -16,7 +17,11 @@
             "FLASK_SETTINGS_MODULE": "server.config.StagingConfig"
         },
         "delete_zip": true,
-        "cors": true,
+        "cors": {
+            "allowed_headers": ["Content-Type", "Cache-Control", "X-Requested-With", "X-Amz-Date", "Authorization", "X-Api-Key", "X-Amz-Security-Token"],
+            "allowed_methods": ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"],
+            "allowed_origin": "*"
+        },
         "exclude": [".bin/*", ".circle/*", "./config", "client/*", "*.log", "*.gz", "*.rar", "development.py"]
     },
     "staging_ap_northeast_1": {
