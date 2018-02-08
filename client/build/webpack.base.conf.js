@@ -4,9 +4,13 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
+const basePath = process.env.FLASK_ENV ? '/' + process.env.FLASK_ENV : '';
+
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
+
+
 
 const createLintingRule = () => ({
   test: /\.(js|vue)$/,
@@ -27,7 +31,7 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: '/' + process.env.FLASK_ENV + (process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath)
+    publicPath: basePath + (process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath)
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
