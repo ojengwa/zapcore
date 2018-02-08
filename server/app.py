@@ -1,7 +1,6 @@
 import logging
 
 from flask import Flask
-from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect
 from flask_s3 import FlaskS3
 from flask_sqlalchemy import SQLAlchemy
@@ -54,9 +53,6 @@ def create_app(app_name, config_obj):
     # register 'api' blueprint
     from .views.api import api as api_blueprint
     factory.register_blueprint(api_blueprint, url_prefix='/_api')
-
-    # add CORS support
-    CORS(factory)
 
     # add GZip support
     Gzip(factory)
