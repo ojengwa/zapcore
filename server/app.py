@@ -43,7 +43,7 @@ def create_app(app_name, config_obj):
     factory.config.from_object(config_obj)
 
     db.init_app(factory)
-    s3.init_app(factory)
+    # s3.init_app(factory)
     csrf.init_app(factory)
 
     # register 'main' blueprint
