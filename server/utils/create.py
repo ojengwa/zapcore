@@ -3,7 +3,7 @@ class BaseClass(object):
         self._type = classtype
 
 
-def ClassFactory(name, argnames, BaseClass=BaseClass):
+def class_factory(name, argnames, BaseClass=BaseClass):
     def __init__(self, **kwargs):
         for key, value in kwargs.items():
             if key not in argnames:
