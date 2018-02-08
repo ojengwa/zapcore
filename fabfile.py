@@ -123,7 +123,7 @@ def status(environment):
         local('zappa status {0}'.format(environment))
 
 
-def log(environment, events='', since='4h'):
+def log(environment, events='', since='30m'):
     prod_settings()
     with zappa_env():
         local(
