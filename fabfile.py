@@ -44,6 +44,10 @@ def dev_server():
     local('python manage.py runserver')
 
 
+def shell():
+    local('python manage.py shell')
+
+
 def test():
     local('python manage.py test')
 
