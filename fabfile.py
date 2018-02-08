@@ -4,6 +4,7 @@ import uuid
 
 from contextlib import contextmanager
 from fabric.api import env, prompt, local
+from fabric.context_managers import lcd as cd
 
 
 def source_settings():
@@ -52,7 +53,8 @@ def test():
 
 
 def assets():
-
+    with cd('./client'):
+        local('npm run build')
     local('python manage.py collectstatic')
 
 
