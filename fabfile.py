@@ -4,7 +4,7 @@ import uuid
 
 from contextlib import contextmanager
 from fabric.api import env, prompt, local
-from fabric.context_managers import lcd as cd
+from fabric.context_managers import lcd as cd, shell_env
 
 
 def source_settings():
@@ -52,8 +52,11 @@ def test():
     local('python manage.py test')
 
 
-def assets():
-    with cd('./client'):
+def assets(environment, node_env='production'):
+
+    with cd('./client'), shell_env(
+            NODE_ENV='{0}'.format(node_env),
+            FLASK_ENV=environment):
         local('npm run build')
     local('python manage.py collectstatic')
 
