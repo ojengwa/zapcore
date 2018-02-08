@@ -1,7 +1,9 @@
 from flask import jsonify
+from sqlalchemy import types
 
 
 def get_json(model):
+
     provided = [
         '__class__', '__delattr__', '__dict__', '__doc__',
         '__format__', '__getattribute__', '__hash__', '__init__',
@@ -26,3 +28,25 @@ def find_type(class_, colname):
     for base in class_.__bases__:
         return find_type(base, colname)
     raise NameError(colname)
+
+
+def get_types():
+
+    sqlalchemy_data_types = {}
+
+    for attribute in [a for a in types.__all__ if callable(
+        getattr(types, a)) and a not in [
+            'TypeDecorator', 'TypeEngine', 'UserDefinedType',
+            'JSON', 'BLOB', 'LargeBinary', 'Binary', 'PickleType']]:
+
+        try:
+            attribute = types.to_instance(getattr(types, attribute))
+
+            if isinstance(attribute, types.TypeEngine):
+
+                sqlalchemy_data_types[str(attribute).lower()] = vars(attribute)
+
+        except TypeError:
+            continue
+
+    return sqlalchemy_data_types
