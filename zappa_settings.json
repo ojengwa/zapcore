@@ -18,7 +18,7 @@
         },
         "delete_zip": true,
         "cors": true,
-        "exclude": [".bin/*", ".circle/*", "./config", "client/*", "*.log", "*.gz", "*.rar", "development.py"]
+        "exclude": [".bin/*", ".circle/*", "dist/*", "./config", "client/*", "*.log", "*.gz", "*.rar", "development.py"]
     },
     "staging_ap_northeast_1": {
         "aws_region": "ap-northeast-1",
