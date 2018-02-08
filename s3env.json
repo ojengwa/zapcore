@@ -1,0 +1,4 @@
+{
+	"staging": "s3://zapacore/env.json",
+	"prod": "s3://zapacore/prod.json"
+}
