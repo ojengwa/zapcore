@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from raven.contrib.flask import Sentry
 
 from .extensions.gzip import Gzip
-
+from .extensions.json import JSONEncoder
 
 SENTRY_DSN = ('https://00d8a063e7cc433f8fd0821fc8432c33:'
               'dfd25db9211a4f08a79aba497ba423ea@sentry.io/272338')
@@ -40,6 +40,7 @@ def create_app(app_name, config_obj):
     factory = FlaskVue(app_name,
                        static_folder="dist/static",
                        template_folder="dist")
+    factory.json_encoder = JSONEncoder
     factory.config.from_object(config_obj)
 
     db.init_app(factory)
