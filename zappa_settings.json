@@ -46,6 +46,13 @@
     },
     "prod": {
         "extends": "staging",
-        "debug": false
+        "debug": false,
+        "environment_variables": {
+            "FLASK_SETTINGS_MODULE": "server.config.ProdConfig",
+            "SECRET_KEY": "cSZSjandCwI9DAhQ"
+        },
+        "aws_environment_variables": {
+            "FLASK_SETTINGS_MODULE": "server.config.ProdConfig"
+        },
     }
 }
