@@ -89,6 +89,7 @@ def undeploy(environment, remove_logs=False):
         cmd = 'zappa undeploy {0}'.format(environment)
 
     with zappa_env():
+        assets(environment)
         local(cmd)
 
 
