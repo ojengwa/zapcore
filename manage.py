@@ -3,9 +3,11 @@
 import os
 
 
+import flask
 import flask_s3
 from flask_script import Manager
 from flask_script import Shell
+from flask_migrate import MigrateCommand
 
 from server.app import create_app
 
@@ -14,6 +16,16 @@ application = create_app(
     'zapcore',
     os.getenv('FLASK_SETTINGS_MODULE',
               'server.config.DevConfig'))
+
+
+@application.route('/assets/<path:file_uri>')
+def send_static(file_uri):
+    """Send your static text file.
+
+    Monkey patching
+    The following handlers will be removed as soon as we migrate to S3."""
+
+    return flask.send_from_directory('dist', file_uri)
 
 
 # Initializing script manager
@@ -30,6 +42,7 @@ def make_shell_context():
 
 
 manager.add_command("shell", Shell(make_context=make_shell_context))
+manager.add_command('db', MigrateCommand)
 
 
 @manager.command
