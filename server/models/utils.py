@@ -43,8 +43,9 @@ def get_types():
             attribute = types.to_instance(getattr(types, attribute))
 
             if isinstance(attribute, types.TypeEngine):
+                fields = vars(attribute)
 
-                sqlalchemy_data_types[str(attribute).lower()] = vars(attribute)
+                sqlalchemy_data_types[str(attribute)] = fields
 
         except TypeError:
             continue
