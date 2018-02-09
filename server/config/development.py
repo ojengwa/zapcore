@@ -9,6 +9,6 @@ class DevConfig(Config):
 
     SQLALCHEMY_ECHO = True
     SQLALCHEMY_DATABASE_URI = (
-        'postgresql://postgres:[]{}?@@localhost:5433/inform')
+        'mysql://root:@localhost/zapacore')
 
     FLASKS3_USE_HTTPS = False
