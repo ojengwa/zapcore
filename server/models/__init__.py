@@ -23,6 +23,11 @@ class BaseMixin(object):
         return '{0}: {1}'.format(self.__class__, self.id)
 
 
+class RiskTypeRef(BaseMixin):
+    # Sample customer model
+    pass
+
+
 class Customer(BaseMixin, db.Model):
     # Sample customer model
     __tablename__ = 'customer'
