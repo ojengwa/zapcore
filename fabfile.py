@@ -41,11 +41,19 @@ def zappa_env():
 
 
 def dev_server():
+
+    with cd('./client'):
+        local('npm run build')
+
     local('python manage.py runserver')
 
 
 def shell():
     local('python manage.py shell')
+
+
+def db(command='init'):
+    local('python manage.py db {0}'.format(command))
 
 
 def test():
