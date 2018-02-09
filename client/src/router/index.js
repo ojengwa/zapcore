@@ -3,14 +3,6 @@ import Router from 'vue-router';
 
 const routerOptions = [
   {
-    path: process.env.FLASK_ENV ? process.env.FLASK_ENV : '/',
-    component: 'Home',
-  },
-  {
-    path: '/landing',
-    component: 'HelloWorld',
-  },
-  {
     path: '*',
     component: 'Home',
   },
