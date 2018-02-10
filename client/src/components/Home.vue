@@ -11,8 +11,9 @@
         <input type='text' id='confirmField' placeholder="Field Name">
 
         <div class="float-left" v-for="(attributes, field, index) in dataTypes" :key="index">
-          <input type='checkbox' name='fieldType' id='confirmField'><label class='label-inline' for='confirmField'>{{field}}
-            , Attributes:  {{attributes}}
+          <input type='checkbox' name='fieldType' id='confirmField'>
+          <label class='label-inline' for='confirmField'>
+            {{field}}, Attributes:  {{attributes}}
           </label>
         </div>
         <br>
