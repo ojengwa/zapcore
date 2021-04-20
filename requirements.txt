@@ -39,7 +39,7 @@ MarkupSafe==1.0
 paramiko==2.4.0
 placebo==0.8.1
 pluggy==0.6.0
-py==1.5.2
+py==1.10.0
 pyasn1==0.4.2
 pycparser==2.18
 PyNaCl==1.2.1
