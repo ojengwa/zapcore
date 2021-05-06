@@ -19,7 +19,7 @@ docutils==0.14
 durationpy==0.5
 Fabric3==1.13.1.post1
 Flask==0.12.2
-Flask-Cors==3.0.3
+Flask-Cors==3.0.9
 Flask-DebugToolbar==0.10.1
 Flask-S3==0.3.3
 Flask-Script==2.0.6
